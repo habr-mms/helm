@@ -1,8 +1,8 @@
 ---
 name: Release helm chart
 on:
-  workflow-dispatch
-  push
+  workflow-dispatch:
+  push:
     branches:
       - main
   
