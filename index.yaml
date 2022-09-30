@@ -1,0 +1,12 @@
+apiVersion: v1
+entries:
+  rbac:
+  - apiVersion: v1
+    created: "2022-09-30T08:39:00.939206615+02:00"
+    description: Configuration for K8S RBAC
+    digest: 28b39d998b352121be64daea96e323d97039601809704e85beda5d5685e00ebc
+    name: rbac
+    urls:
+    - https://github.com/habr-mms/helm/releases/download/rbac-0.1.0/rbac-0.1.0.tgz
+    version: 0.1.0
+generated: "2022-09-30T08:39:00.939217876+02:00"
