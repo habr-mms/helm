@@ -1,0 +1,80 @@
+service_account:
+  namespace: test
+  account:
+  - helmchart-demo
+
+cluster_role:
+- name: demo-cluster-role1
+  rules:
+  - api_groups:
+    - ""
+    resources:
+    - nodes
+    - pods
+    - services
+    - endpoints
+    - secrets
+    verbs:
+    - get
+    - list
+    - watch
+  - api_groups:
+    - ""
+    resources:
+    - configmaps
+    verbs:
+    - get
+  - api_groups:
+    - apps
+    resources:
+    - deployments
+    verbs:
+    - get
+    - list
+    - watch
+
+cluster_role_binding:
+- name: demo-cluster-role-binding1
+  namespace: default
+  role_ref:
+    name: demo-cluster-role1
+    api_group: rbac.authorization.k8s.io
+    kind: ClusterRole
+  subjects:
+  - name: helmchart-demo
+    namespace: default
+    kind: ServiceAccount
+
+role:
+- name: demo-role1
+  namespace: default
+  rules:
+  - api_groups:
+    - ""
+    resources:
+    - namespaces
+    verbs:
+    - get
+  - api_groups:
+    - ""
+    resources:
+    - pods
+    - endpoints
+    - secrets
+    - configmaps
+    verbs:
+    - get
+    - list
+    - watch
+
+role_binding:
+- name: demo-role-binding1
+  namespace: default
+  role_ref:
+    name: demo-role1
+    api_group: rbac.authorization.k8s.io
+    kind: Role
+  subjects:
+  - name: helmchart-demo
+    namespace: default
+    kind: ServiceAccount
